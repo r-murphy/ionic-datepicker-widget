@@ -16,7 +16,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           "August", "September", "October", "November", "December"];
 
         var currentDate = scope.value;
-        scope.weekNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
         scope.today = {};
         scope.today.dateObj = new Date();
