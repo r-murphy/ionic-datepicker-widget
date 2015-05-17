@@ -9,13 +9,17 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
       restrict: 'AE',
       replace: true,
       scope: {
-        value: '=value'
+        value: '=',
+        weekBeginsOnMonday: '@'
       },
       link: function (scope, element, attrs) {
         var currentDate = angular.copy(scope.value) || new Date(); // Date for the UI calendar display
         scope.selectedDate = currentDate; // Temporary selected date before the 'Set' or 'Today' is pressed
 
         scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        if (scope.weekBeginsOnMonday || false) {
+          scope.dayInitials.push(scope.dayInitials.shift());
+        }
 
         scope.calendarRows = new Array(6);
         scope.calendarCols = new Array(7);
@@ -33,6 +37,9 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           }
           // Offset the first of the month to match the week day
           firstDay = scope.dayList[0].date.getDay();
+          if (scope.weekBeginsOnMonday || false) {
+            firstDay--;
+          }
           for (var j = 0; j < firstDay; j++) {
             scope.dayList.unshift(undefined);
           }
