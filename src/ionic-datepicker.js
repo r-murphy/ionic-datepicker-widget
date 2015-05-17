@@ -9,13 +9,13 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
       restrict: 'AE',
       replace: true,
       scope: {
-        ipDate: '=idate'
+        value: '=value'
       },
       link: function (scope, element, attrs) {
         var monthsList = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"];
 
-        var currentDate = angular.copy(scope.ipDate);
+        var currentDate = angular.copy(scope.value);
         scope.weekNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
         scope.today = {};
@@ -97,11 +97,11 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         };
 
         element.on("click", function () {
-          if (!scope.ipDate) {
+          if (!scope.value) {
             var defaultDate = new Date();
             refreshDateList(defaultDate);
           } else {
-            refreshDateList(angular.copy(scope.ipDate));
+            refreshDateList(angular.copy(scope.value));
           }
 
           $ionicPopup.show({
@@ -125,7 +125,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
                   scope.date_selection.submitted = true;
 
                   if (scope.date_selection.selected === true) {
-                    scope.ipDate = angular.copy(scope.date_selection.selectedDate);
+                    scope.value = angular.copy(scope.date_selection.selectedDate);
                   } else {
                     e.preventDefault();
                   }
