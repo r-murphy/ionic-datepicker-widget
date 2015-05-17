@@ -1,40 +1,20 @@
 /* Empty. Add your own CSS if you like */
 
-.color_blue {
-    color: rgb(56, 126, 245) !important;
+.datepicker .day {
+    padding: 5px;
+    white-space: nowrap;
 }
-
-.bg_color_blue {
-    background-color: rgb(56, 126, 245);
-}
-
-.date_col:hover {
+.datepicker .day:hover {
     background-color: rgba(56, 126, 245, 0.5);
     cursor: pointer;
 }
-
-.date_col:active {
+.datepicker .day:active {
     background-color: rgba(56, 126, 245, 1);
     cursor: pointer;
 }
-
-.no_padding {
-    padding: 0;
-}
-
-.date_cell {
-    padding: 5px;
-}
-
-.error_msg {
-    color: #cc0000 !important;
-    font-size: 12px;
-}
-
-.date_selected {
+.datepicker .selected {
     background-color: rgba(56, 126, 245, 1);
 }
-
-.today {
+.datepicker .today {
     background-color: rgba(186, 186, 186, 1);
 }
