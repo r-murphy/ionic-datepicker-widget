@@ -13,8 +13,6 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
       },
       link: function (scope, element, attrs) {
         var now = new Date();
-        var monthsList = ["January", "February", "March", "April", "May", "June", "July",
-          "August", "September", "October", "November", "December"];
 
         var currentDate = angular.copy(scope.value);
         scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -54,14 +52,14 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           scope.rows = new Array(6);
           scope.cols = new Array(7);
 
-          scope.currentMonth = monthsList[currentDate.getMonth()];
+          scope.currentMonth = currentDate.getMonth();
           scope.currentYear = currentDate.getFullYear();
         };
 
         // Go to previous month
         scope.prevMonth = function () {
           currentDate.setMonth(currentDate.getMonth() - 1);
-          scope.currentMonth = monthsList[currentDate.getMonth()];
+          scope.currentMonth = currentDate.getMonth();
           scope.currentYear = currentDate.getFullYear();
           refreshCalendar(currentDate)
         };
@@ -69,7 +67,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         // Go to next month
         scope.nextMonth = function () {
           currentDate.setMonth(currentDate.getMonth() + 1);
-          scope.currentMonth = monthsList[currentDate.getMonth()];
+          scope.currentMonth = currentDate.getMonth();
           scope.currentYear = currentDate.getFullYear();
           refreshCalendar(currentDate)
         };

@@ -1,7 +1,21 @@
 <div class="datepicker">
   <div class="row">
     <button class="col col-10 button-clear icon-left ion-chevron-left" ng-click="prevMonth()"></button>
-    <div class="col col-80 text-center">{{currentMonth}} &mdash; {{currentYear}}</div>
+    <div class="col col-80 text-center">
+      <span ng-show="currentMonth == 0">January</span>
+      <span ng-show="currentMonth == 1">February</span>
+      <span ng-show="currentMonth == 2">March</span>
+      <span ng-show="currentMonth == 3">April</span>
+      <span ng-show="currentMonth == 4">May</span>
+      <span ng-show="currentMonth == 5">June</span>
+      <span ng-show="currentMonth == 6">July</span>
+      <span ng-show="currentMonth == 7">August</span>
+      <span ng-show="currentMonth == 8">September</span>
+      <span ng-show="currentMonth == 9">October</span>
+      <span ng-show="currentMonth == 10">November</span>
+      <span ng-show="currentMonth == 11">December</span>
+      &mdash; {{ currentYear }}
+    </div>
     <button class="col col-10 button-clear icon-right ion-chevron-right" ng-click="nextMonth()"></button>
   </div>
   <div class="calendar">
