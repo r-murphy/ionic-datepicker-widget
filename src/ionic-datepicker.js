@@ -14,7 +14,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
       },
       link: function (scope, element, attrs) {
         var currentDate = angular.copy(scope.value) || new Date(); // Date for the UI calendar display
-        scope.selectedDate = currentDate; // Temporary selected date before the 'Set' or 'Today' is pressed
+        scope.highlightedDate = angular.copy(currentDate); // Temporary selected date before the 'Set' or 'Today' is pressed
 
         scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
         if (scope.weekBeginsOnMonday || false) {
@@ -63,9 +63,11 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           refreshCalendar(currentDate)
         };
 
-        scope.setDate = function (date) {
+        scope.highlightDate = function (date) {
           if (typeof date !== 'undefined') {
-            scope.selectedDate = date.date;
+            scope.highlightedDate = angular.copy(date);
+            currentDate = date;
+            refreshCalendar(currentDate);
           }
         };
 
@@ -78,8 +80,8 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         // Check if the day should be selected (for CSS class)
         scope.isSelected = function (rowIndex, colIndex) {
           if (scope.isValidDay(rowIndex, colIndex)) {
-            var day = scope.dayList[rowIndex * 7 + colIndex]
-            return (day.date.toDateString() === scope.selectedDate.toDateString());
+            var day = scope.dayList[rowIndex * 7 + colIndex];
+            return (day.date.toDateString() === scope.highlightedDate.toDateString());
           }
           return false;
         };
@@ -105,7 +107,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
                 text: 'Today',
                 onTap: function () {
                   var now = new Date();
-                  scope.setDate({ date: now });
+                  scope.highlightDate(now);
                   scope.value = now;
                 }
               },
@@ -113,7 +115,8 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
                 text: 'Set',
                 type: 'button-positive',
                 onTap: function () {
-                  scope.value = scope.selectedDate;
+                  scope.highlightDate(scope.highlightedDate);
+                  scope.value = scope.highlightedDate;
                 }
               }
             ]

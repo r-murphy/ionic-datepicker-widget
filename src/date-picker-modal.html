@@ -32,7 +32,7 @@
             'selected': isSelected($parent.$index, $index),
             'today': isToday($parent.$index, $index)
           }"
-          ng-click="setDate(dayList[$parent.$index * 7 + $index])">
+          ng-click="highlightDate(dayList[$parent.$index * 7 + $index].date)">
             {{ dayList[$parent.$index * 7 + $index].day }}
         </div>
       </div>
