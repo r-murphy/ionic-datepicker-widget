@@ -25,7 +25,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         scope.today.year = (new Date()).getFullYear();
 
         var refreshDateList = function (current_date) {
-          scope.selctedDateString = (new Date(current_date)).toString();
+          scope.selectedDateString = (new Date(current_date)).toString();
           currentDate = angular.copy(current_date);
 
           var firstDay = new Date(current_date.getFullYear(), current_date.getMonth(), 1).getDate();
@@ -91,7 +91,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         scope.date_selection = {selected: false, selectedDate: '', submitted: false};
 
         scope.dateSelected = function (date) {
-          scope.selctedDateString = date.dateString;
+          scope.selectedDateString = date.dateString;
           scope.date_selection.selected = true;
           scope.date_selection.selectedDate = new Date(date.dateString);
         };
