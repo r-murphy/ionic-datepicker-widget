@@ -9,17 +9,17 @@
       <div class="col" ng-repeat="dayInitial in dayInitials track by $index" style="font-weight: bold"> {{ dayInitial }}</div>
     </div>
     <div style="height: 180px;">
-      <div class="row" ng-repeat="row in rows track by $index" style="text-align: center;">
+      <div class="row text-center" ng-repeat="row in rows track by $index">
         <div
           class="col"
           ng-repeat="col in cols track by $index"
           ng-class="{
-            'day': (dayList[$parent.$index * numColumns + $index].day != undefined),
-            'selected': (dayList[$parent.$index * numColumns + $index].dateString === selectedDateString && dayList[$parent.$index * numColumns + $index].day != undefined),
-            'today' : (dayList[$parent.$index * numColumns + $index].date == today.date && dayList[$parent.$index * numColumns + $index].month == today.month && dayList[$parent.$index * numColumns + $index].year == today.year)
+            'day': isValidDay($parent.$index, $index),
+            'selected': isSelected($parent.$index, $index),
+            'today': isToday($parent.$index, $index)
           }"
-          ng-click="setDate(dayList[$parent.$index * numColumns + $index])">
-            {{ dayList[$parent.$index * numColumns + $index].date }}
+          ng-click="setDate(dayList[$parent.$index * 7 + $index])">
+            {{ dayList[$parent.$index * 7 + $index].date }}
         </div>
       </div>
     </div>

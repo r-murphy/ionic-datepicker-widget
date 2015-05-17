@@ -51,16 +51,11 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
             scope.dayList.unshift({});
           }
 
-          scope.rows = [];
-          scope.cols = [];
+          scope.rows = new Array(6);
+          scope.cols = new Array(7);
 
           scope.currentMonth = monthsList[currentDate.getMonth()];
           scope.currentYear = currentDate.getFullYear();
-
-          scope.numColumns = 7;
-          scope.rows.length = 6;
-          scope.cols.length = scope.numColumns;
-
         };
 
         scope.prevMonth = function () {
@@ -96,6 +91,28 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
             scope.date_selection.selectedDate = new Date(date.dateString);
           }
         };
+
+        // Check if the day is valid
+        scope.isValidDay = function(rowIndex, colIndex) {
+          var day = scope.dayList[rowIndex * 7 + colIndex];
+          return (typeof day !== 'undefined' && 'day' in day);
+        };
+        // Check if the day should be selected
+        scope.isSelected = function(rowIndex, colIndex) {
+          var day = scope.dayList[rowIndex * 7 + colIndex];
+          if (scope.isValidDay(rowIndex, colIndex)) {
+            return (day.dateString === scope.selectedDateString);
+          }
+          return false;
+        };
+        // Check if the day is today
+        scope.isToday = function(rowIndex, colIndex) {
+          var day = scope.dayList[rowIndex * 7 + colIndex];
+          if (scope.isValidDay(rowIndex, colIndex)) {
+           return (day.date == scope.today.date && day.month == scope.today.month && day.year == scope.today.year);
+          }
+          return false;
+        }
 
         element.on("click", function () {
           var now = new Date();
