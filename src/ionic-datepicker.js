@@ -18,8 +18,8 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
 
         scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-        scope.rows = new Array(6);
-        scope.cols = new Array(7);
+        scope.calendarRows = new Array(6);
+        scope.calendarCols = new Array(7);
 
         var refreshCalendar = function (currentDate) {
 
