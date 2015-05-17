@@ -12,6 +12,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         value: '=value'
       },
       link: function (scope, element, attrs) {
+        var now = new Date();
         var monthsList = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"];
 
@@ -19,10 +20,10 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
         scope.today = {};
-        scope.today.dateObj = new Date();
-        scope.today.date = (new Date()).getDate();
-        scope.today.month = (new Date()).getMonth();
-        scope.today.year = (new Date()).getFullYear();
+        scope.today.dateObj = now;
+        scope.today.date = now.getDate();
+        scope.today.month = now.getMonth();
+        scope.today.year = now.getFullYear();
 
         var refreshCalendar = function (current_date) {
           scope.selectedDateString = (new Date(current_date)).toString();
@@ -97,9 +98,9 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         };
 
         element.on("click", function () {
+          var now = new Date();
           if (!scope.value) {
-            var defaultDate = new Date();
-            refreshCalendar(defaultDate);
+            refreshCalendar(now);
           } else {
             refreshCalendar(scope.value);
           }
@@ -114,7 +115,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
               {
                 text: 'Today',
                 onTap: function (e) {
-                  refreshCalendar(new Date());
+                  refreshCalendar(now);
                   e.preventDefault();
                 }
               },
