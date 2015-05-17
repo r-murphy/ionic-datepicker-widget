@@ -58,27 +58,19 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           scope.currentYear = currentDate.getFullYear();
         };
 
+        // Go to previous month
         scope.prevMonth = function () {
-          if (currentDate.getMonth() === 1) {
-            currentDate.setFullYear(currentDate.getFullYear());
-          }
           currentDate.setMonth(currentDate.getMonth() - 1);
-
           scope.currentMonth = monthsList[currentDate.getMonth()];
           scope.currentYear = currentDate.getFullYear();
-
           refreshCalendar(currentDate)
         };
 
+        // Go to next month
         scope.nextMonth = function () {
-          if (currentDate.getMonth() === 11) {
-            currentDate.setFullYear(currentDate.getFullYear());
-          }
           currentDate.setMonth(currentDate.getMonth() + 1);
-
           scope.currentMonth = monthsList[currentDate.getMonth()];
           scope.currentYear = currentDate.getFullYear();
-
           refreshCalendar(currentDate)
         };
 
