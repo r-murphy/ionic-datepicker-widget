@@ -41,9 +41,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
               month: tempDate.getMonth(),
               year: tempDate.getFullYear(),
               day: tempDate.getDay(),
-              dateString: tempDate.toString(),
-              epochLocal: tempDate.getTime(),
-              epochUTC: (tempDate.getTime() + (tempDate.getTimezoneOffset() * 60 * 1000))
+              dateString: tempDate.toString()
             });
           }
 
