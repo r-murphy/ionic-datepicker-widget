@@ -89,10 +89,12 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
 
         scope.date_selection = {selected: false, selectedDate: '', submitted: false};
 
-        scope.dateSelected = function (date) {
-          scope.selectedDateString = date.dateString;
-          scope.date_selection.selected = true;
-          scope.date_selection.selectedDate = new Date(date.dateString);
+        scope.setDate = function (date) {
+          if (typeof date !== 'undefined' && 'dateString' in date) {
+            scope.selectedDateString = date.dateString;
+            scope.date_selection.selected = true;
+            scope.date_selection.selectedDate = new Date(date.dateString);
+          }
         };
 
         element.on("click", function () {

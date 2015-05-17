@@ -18,7 +18,7 @@
             'selected': (dayList[$parent.$index * numColumns + $index].dateString === selectedDateString && dayList[$parent.$index * numColumns + $index].day != undefined),
             'today' : (dayList[$parent.$index * numColumns + $index].date == today.date && dayList[$parent.$index * numColumns + $index].month == today.month && dayList[$parent.$index * numColumns + $index].year == today.year)
           }"
-          ng-click="dateSelected(dayList[$parent.$index * numColumns + $index])">
+          ng-click="setDate(dayList[$parent.$index * numColumns + $index])">
             {{ dayList[$parent.$index * numColumns + $index].date }}
         </div>
       </div>
