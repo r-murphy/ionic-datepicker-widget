@@ -1,7 +1,7 @@
 //By Rajeshwar Patlolla
 //https://github.com/rajeshwarpatlolla
 
-"use strict";
+'use strict';
 angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
 
   .directive('ionicDatepicker', ['$ionicPopup', function ($ionicPopup) {
@@ -21,12 +21,9 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         scope.calendarCols = new Array(7);
 
         var refreshCalendar = function (currentDate) {
-
+          scope.dayList = [];
           var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDate();
           var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-
-          scope.dayList = [];
-
           for (var i = firstDay; i <= lastDay; i++) {
             var tempDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
             scope.dayList.push({
@@ -34,13 +31,11 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
               day: tempDate.getDate()
             });
           }
-
-          // Offset the first of the month
+          // Offset the first of the month to match the week day
           firstDay = scope.dayList[0].date.getDay();
           for (var j = 0; j < firstDay; j++) {
             scope.dayList.unshift(undefined);
           }
-
           scope.currentMonth = currentDate.getMonth();
           scope.currentYear = currentDate.getFullYear();
         };
@@ -67,28 +62,30 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           }
         };
 
-        // Check if the day is valid
-        scope.isValidDay = function(rowIndex, colIndex) {
+        // Check if the day is valid (for CSS class)
+        scope.isValidDay = function (rowIndex, colIndex) {
           var day = scope.dayList[rowIndex * 7 + colIndex];
           return (typeof day !== 'undefined');
         };
-        // Check if the day should be selected
-        scope.isSelected = function(rowIndex, colIndex) {
+
+        // Check if the day should be selected (for CSS class)
+        scope.isSelected = function (rowIndex, colIndex) {
           if (scope.isValidDay(rowIndex, colIndex)) {
             var day = scope.dayList[rowIndex * 7 + colIndex]
             return (day.date.toDateString() === scope.selectedDate.toDateString());
           }
           return false;
         };
-        // Check if the day is today
-        scope.isToday = function(rowIndex, colIndex) {
+
+        // Check if the day is today (for CSS class)
+        scope.isToday = function (rowIndex, colIndex) {
           if (scope.isValidDay(rowIndex, colIndex)) {
             return (scope.dayList[rowIndex * 7 + colIndex].date.toDateString() === new Date().toDateString());
           }
           return false;
         }
 
-        element.on("click", function () {
+        element.on('click', function () {
           refreshCalendar(currentDate);
           $ionicPopup.show({
             templateUrl: 'date-picker-modal.html',
@@ -96,7 +93,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
             subTitle: '',
             scope: scope,
             buttons: [
-              {text: 'Close'},
+              { text: 'Close' },
               {
                 text: 'Today',
                 onTap: function () {
