@@ -17,15 +17,11 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         var currentDate = angular.copy(scope.value);
         scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-        scope.today = {
-          dateObj: now,
-          date: now.getDate(),
-          month: now.getMonth(),
-          year: now.getFullYear()
-        };
+        scope.rows = new Array(6);
+        scope.cols = new Array(7);
 
+        scope.selectedDate = now;
         var refreshCalendar = function (currentDate) {
-          scope.selectedDateString = (new Date(currentDate)).toString();
 
           var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDate();
           var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
@@ -35,22 +31,16 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           for (var i = firstDay; i <= lastDay; i++) {
             var tempDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
             scope.dayList.push({
-              date: tempDate.getDate(),
-              month: tempDate.getMonth(),
-              year: tempDate.getFullYear(),
-              day: tempDate.getDay(),
-              dateString: tempDate.toString()
+              date: tempDate,
+              day: tempDate.getDate()
             });
           }
 
-          var firstDay = scope.dayList[0].day;
-
+          // Offset the first of the month
+          firstDay = scope.dayList[0].date.getDay();
           for (var j = 0; j < firstDay; j++) {
             scope.dayList.unshift(undefined);
           }
-
-          scope.rows = new Array(6);
-          scope.cols = new Array(7);
 
           scope.currentMonth = currentDate.getMonth();
           scope.currentYear = currentDate.getFullYear();
@@ -72,13 +62,9 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           refreshCalendar(currentDate)
         };
 
-        scope.date_selection = {selected: false, selectedDate: '', submitted: false};
-
         scope.setDate = function (date) {
           if (typeof date !== 'undefined') {
-            scope.selectedDateString = date.dateString;
-            scope.date_selection.selected = true;
-            scope.date_selection.selectedDate = new Date(date.dateString);
+            scope.selectedDate = date.date;
           }
         };
 
@@ -89,17 +75,16 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         };
         // Check if the day should be selected
         scope.isSelected = function(rowIndex, colIndex) {
-          var day = scope.dayList[rowIndex * 7 + colIndex];
           if (scope.isValidDay(rowIndex, colIndex)) {
-            return (day.dateString === scope.selectedDateString);
+            var day = scope.dayList[rowIndex * 7 + colIndex]
+            return (day.date.toDateString() === scope.selectedDate.toDateString());
           }
           return false;
         };
         // Check if the day is today
         scope.isToday = function(rowIndex, colIndex) {
-          var day = scope.dayList[rowIndex * 7 + colIndex];
           if (scope.isValidDay(rowIndex, colIndex)) {
-           return (day.date == scope.today.date && day.month == scope.today.month && day.year == scope.today.year);
+            return (scope.dayList[rowIndex * 7 + colIndex].date.toDateString() === new Date().toDateString());
           }
           return false;
         }
@@ -129,14 +114,8 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
               {
                 text: 'Set',
                 type: 'button-positive',
-                onTap: function (e) {
-                  scope.date_selection.submitted = true;
-
-                  if (scope.date_selection.selected === true) {
-                    scope.value = scope.date_selection.selectedDate;
-                  } else {
-                    e.preventDefault();
-                  }
+                onTap: function () {
+                  scope.value = scope.selectedDate;
                 }
               }
             ]
