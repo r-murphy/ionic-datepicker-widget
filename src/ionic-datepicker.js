@@ -15,7 +15,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         var monthsList = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"];
 
-        var currentDate = angular.copy(scope.value);
+        var currentDate = scope.value;
         scope.weekNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
         scope.today = {};
@@ -26,7 +26,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
 
         var refreshCalendar = function (current_date) {
           scope.selectedDateString = (new Date(current_date)).toString();
-          currentDate = angular.copy(current_date);
+          currentDate = current_date;
 
           var firstDay = new Date(current_date.getFullYear(), current_date.getMonth(), 1).getDate();
           var lastDay = new Date(current_date.getFullYear(), current_date.getMonth() + 1, 0).getDate();
@@ -101,7 +101,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
             var defaultDate = new Date();
             refreshCalendar(defaultDate);
           } else {
-            refreshCalendar(angular.copy(scope.value));
+            refreshCalendar(scope.value);
           }
 
           $ionicPopup.show({
@@ -125,7 +125,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
                   scope.date_selection.submitted = true;
 
                   if (scope.date_selection.selected === true) {
-                    scope.value = angular.copy(scope.date_selection.selectedDate);
+                    scope.value = scope.date_selection.selectedDate;
                   } else {
                     e.preventDefault();
                   }
