@@ -19,11 +19,12 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         var currentDate = scope.value;
         scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-        scope.today = {};
-        scope.today.dateObj = now;
-        scope.today.date = now.getDate();
-        scope.today.month = now.getMonth();
-        scope.today.year = now.getFullYear();
+        scope.today = {
+          dateObj: now,
+          date: now.getDate(),
+          month: now.getMonth(),
+          year: now.getFullYear()
+        };
 
         var refreshCalendar = function (currentDate) {
           scope.selectedDateString = (new Date(currentDate)).toString();
