@@ -46,7 +46,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           var firstDay = scope.dayList[0].day;
 
           for (var j = 0; j < firstDay; j++) {
-            scope.dayList.unshift({});
+            scope.dayList.unshift(undefined);
           }
 
           scope.rows = new Array(6);
@@ -75,7 +75,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         scope.date_selection = {selected: false, selectedDate: '', submitted: false};
 
         scope.setDate = function (date) {
-          if (typeof date !== 'undefined' && 'dateString' in date) {
+          if (typeof date !== 'undefined') {
             scope.selectedDateString = date.dateString;
             scope.date_selection.selected = true;
             scope.date_selection.selectedDate = new Date(date.dateString);
@@ -85,7 +85,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         // Check if the day is valid
         scope.isValidDay = function(rowIndex, colIndex) {
           var day = scope.dayList[rowIndex * 7 + colIndex];
-          return (typeof day !== 'undefined' && 'day' in day);
+          return (typeof day !== 'undefined');
         };
         // Check if the day should be selected
         scope.isSelected = function(rowIndex, colIndex) {
