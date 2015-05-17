@@ -12,8 +12,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         value: '=value'
       },
       link: function (scope, element, attrs) {
-        var now = new Date();
-        var currentDate = angular.copy(scope.value) || now; // Date for the UI calendar display
+        var currentDate = angular.copy(scope.value) || new Date(); // Date for the UI calendar display
         scope.selectedDate = currentDate; // Temporary selected date before the 'Set' or 'Today' is pressed
 
         scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -90,13 +89,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         }
 
         element.on("click", function () {
-          var now = new Date();
-          if (!scope.value) {
-            refreshCalendar(now);
-          } else {
-            refreshCalendar(scope.value);
-          }
-
+          refreshCalendar(currentDate);
           $ionicPopup.show({
             templateUrl: 'date-picker-modal.html',
             title: '<strong>Select Date</strong>',
