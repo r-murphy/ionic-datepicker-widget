@@ -25,17 +25,16 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
         scope.today.month = now.getMonth();
         scope.today.year = now.getFullYear();
 
-        var refreshCalendar = function (current_date) {
-          scope.selectedDateString = (new Date(current_date)).toString();
-          currentDate = current_date;
+        var refreshCalendar = function (currentDate) {
+          scope.selectedDateString = (new Date(currentDate)).toString();
 
-          var firstDay = new Date(current_date.getFullYear(), current_date.getMonth(), 1).getDate();
-          var lastDay = new Date(current_date.getFullYear(), current_date.getMonth() + 1, 0).getDate();
+          var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDate();
+          var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
           scope.dayList = [];
 
           for (var i = firstDay; i <= lastDay; i++) {
-            var tempDate = new Date(current_date.getFullYear(), current_date.getMonth(), i);
+            var tempDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
             scope.dayList.push({
               date: tempDate.getDate(),
               month: tempDate.getMonth(),
@@ -56,8 +55,8 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           scope.rows = [];
           scope.cols = [];
 
-          scope.currentMonth = monthsList[current_date.getMonth()];
-          scope.currentYear = current_date.getFullYear();
+          scope.currentMonth = monthsList[currentDate.getMonth()];
+          scope.currentYear = currentDate.getFullYear();
 
           scope.numColumns = 7;
           scope.rows.length = 6;
