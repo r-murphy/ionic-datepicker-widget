@@ -13,7 +13,7 @@
     cursor: pointer;
 }
 .datepicker .selected {
-    background-color: rgba(56, 126, 245, 1);
+    background-color: rgba(56, 126, 245, 1) !important;
 }
 .datepicker .today {
     background-color: rgba(186, 186, 186, 1);
