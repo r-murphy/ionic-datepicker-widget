@@ -1,92 +1,63 @@
-##Introduction:
+# Ionic Datepicker Widget
+_A nice datepicker widget to be used with Ionic framework._
 
-This is a `ionic-datepicker` bower component which can be used with any Ionic framework's application.
+## Requirements
 
-[View Demo](http://rajeshwarpatlolla.github.io/DatePickerForIonicFramework/demo/ "Demo") 
+* Ionic framework
 
+## Usage
 
-##Prerequisites.
+ * Install the required files using bower:
 
-1) node.js, bower and gulp.
+```sh
+bower install ionic-datepicker-widget --save
+```
 
-##How to use:
+ * Include the files from the `lib/ionic-datepicker-widget/dist` in your `index.html` file:
 
-1) In your project repository install the ionic date picker using bower
+```html
+<link href="lib/ionic-datepicker-widget/dist/ionic-datepicker.css" rel="stylesheet">
+<script src="lib/ionic-datepicker-widget/dist/ionic-datepicker.min.js"></script>
+```
 
-    bower install ionic-datepicker --save
-    
-2) Then you can see the following directory structure see in your project folder
+ * Inject the dependency `ionic-datepicker` into your application module:
 
-![Directory structure](https://lh3.googleusercontent.com/8x3OByTXzzgJSxm-n5Yg8-0g-u2OZt18j9EbvNTgK3Q=w112-h207-p-no "Directory structure")
+```javascript
+angular.module('yourApp', ['ionic', 'ionic-datepicker'])
+```
 
-Give the path of  `style.css, templates.js and ionic-datepicker.js` in your `index.html` file.
+ * Initialize the date model in your controller:
 
-````html
-<link href="lib/ionic-datepicker/dist/style.css" rel="stylesheet"> 
-<!-- path to ionic/angularjs js -->
-<script src="lib/ionic-datepicker/dist/templates.js"></script>
-<script src="lib/ionic-datepicker/dist/ionic-datepicker.js"></script>
-````    
-    
-3) In your application module inject the dependency `ionic-datepicker`, in order to work with the ionic time picker
-````javascript
-angular.module('mainModuleName', ['ionic', 'ionic-datepicker']){
- //
-}
-````
+```javascript
+$scope.item = {
+    date: new Date()
+};
+```
 
-4) Use the below format in your template's corresponding controller
+ * Use `ionic-datepicker` directive in your template:
 
-````javascript
-$scope.currentDate = new Date();
-````
-
-5) Then use the below format in your template / html file
-
-````html
-<ionic-datepicker idate="currentDate" >
-    <button class="button button-block button-positive"> {{ currentDate | date:'dd - MMMM - yyyy' }} </button>
+```html
+<ionic-datepicker value="item.date">
+    <button class="button button-block button-positive icon-left ion-calendar">
+        {{ item.date | date:'yyyy-MM-dd' }}
+    </button>
 </ionic-datepicker>
-````
+```
 
+## Changelog
 
-a) `ionic-datepicker` is the directive, to which we can pass required vales.
+ 1. v1.0.0
+   * Refactored most of the code
+   * Added week-begins-on-monday option
+   * Added optional min and max dates
+   * Released as `ionic-datepicker-widget`
+ 1. v0.1.3
+   * Forked from [upstream](https://github.com/rajeshwarpatlolla/ionic-datepicker).
 
-b) `idate` takes date object. If we don't pass any value, the default value will be `new Date()`.
+## License
 
-Tested with `angular#1.3.6` and `ionic#1.0.0-rc.4`. 
+[MIT](https://raw.githubusercontent.com/markomarkovic/ionic-datepicker-widget/master/LICENSE)
 
-##Screen Shots:
+---
 
-Once you are successfully done with the above steps, you should be able to see the below screen shots.
-I have used two buttons here. 
-
-The first screen shot shows only the buttons before clicking on them.
-Once you click on the button you should see the second screen shot.
- 
-![Date picker buttons](https://lh3.googleusercontent.com/YYlyw-ozro_rq9QB7hB1OzGKxo4kJpeGpXFo0ZgxF24=w117-h207-p-no "Date picker buttons") 
-![Date picker modal](https://lh3.googleusercontent.com/GZPl7o0dx_Vp7lQB2IX35eM0u3wkK3bvSQw7mH3I5uY=w116-h207-p-no "Date picker modal")
-##Versions:
-
-### 1) v0.1.0
-The whole date picker functionality has been implemented, and can be installed with  `bower install ionic-datepicker --save`
-### 2) v0.1.1
-Bug Fix. This is the latest version of `ionic-datepicker` component.
-### 3) v0.1.2
-Bug Fix. If we don't pass the date to the time picker it will pick the todays date by default.
-### 4) v0.1.3
-[Bug Fix](http://forum.ionicframework.com/t/ionic-datepicker-bower-component-for-ionic-framework-applications/21516/14)
-
-##License:
-[MIT](https://github.com/rajeshwarpatlolla/ionic-datepicker/blob/master/LICENSE.MD "MIT")
-
-##Contact:
-gmail : rajeshwar.patlolla@gmail.com
-
-github : https://github.com/rajeshwarpatlolla
-
-twitter : https://twitter.com/rajeshwar_9032
-
-facebook : https://www.facebook.com/rajeshwarpatlolla
-
-paypal : rajeshwar.patlolla@gmail.com
+If you find this useful, consider donating BTC to `1fLnPZkMYw1TFNEsJZCciwDAmUhDw2wit`.
