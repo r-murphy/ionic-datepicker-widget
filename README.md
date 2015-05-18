@@ -1,5 +1,5 @@
 # Ionic Datepicker Widget
-_A nice Datepicker widget to be used with Ionic framework._
+_A nice datepicker widget to be used with Ionic framework._
 
 ## Requirements
 
@@ -17,8 +17,7 @@ bower install ionic-datepicker-widget --save
 
 ```html
 <link href="lib/ionic-datepicker-widget/dist/ionic-datepicker.css" rel="stylesheet">
-<script src="lib/ionic-datepicker-widget/dist/ionic-datepicker.js"></script>
-<script src="lib/ionic-datepicker-widget/dist/ionic-datepicker.template.js"></script>
+<script src="lib/ionic-datepicker-widget/dist/ionic-datepicker.min.js"></script>
 ```
 
  * Inject the dependency `ionic-datepicker` into your application module:
