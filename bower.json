@@ -6,9 +6,9 @@
   ],
   "description": "A date picker component for ionic framework applications",
   "main": [
-    "./dist/templates.js",
+    "./dist/ionic-datepicker.css",
     "./dist/ionic-datepicker.js",
-    "./dist/style.css"
+    "./dist/ionic-datepicker.template.js"
   ],
   "keywords": [
     "ionic-datepicker",
