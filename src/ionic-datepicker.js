@@ -157,7 +157,10 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
             subTitle: '',
             scope: scope,
             buttons: [
-              { text: 'Close' },
+              {
+                text: '<i class="icon ion-close"></i>',
+                type: 'button-clear'
+              },
               {
                 text: 'Today',
                 onTap: function (e) {
@@ -177,7 +180,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
                 }
               },
               {
-                text: 'Set',
+                text: '<i class="icon ion-checkmark"></i>',
                 type: 'button-positive',
                 onTap: function () {
                   scope.highlightDate(scope.highlightedDate);
