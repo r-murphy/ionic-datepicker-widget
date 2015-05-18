@@ -153,7 +153,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
           refreshCalendar(currentDate);
           $ionicPopup.show({
             templateUrl: 'ionic-datepicker.template.html',
-            title: '<strong>Select Date</strong>',
+            title: '<strong>Select a date</strong>',
             subTitle: '',
             scope: scope,
             buttons: [
