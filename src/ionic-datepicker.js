@@ -33,6 +33,22 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
           scope.weekDays.push(scope.weekDays.shift());
         }
 
+        // Month names
+        var monthNames = [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December'
+        ];
+
         scope.calendarRows = new Array(6);
         scope.calendarCols = new Array(7);
 
@@ -55,7 +71,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
           for (var j = 0; j < firstDay; j++) {
             scope.dayList.unshift(undefined);
           }
-          scope.currentMonth = currentDate.getMonth();
+          scope.currentMonth = monthNames[currentDate.getMonth()];
           scope.currentYear = currentDate.getFullYear();
         };
 
