@@ -30,7 +30,8 @@
           ng-class="{
             'day': isValidDay($parent.$index, $index),
             'selected': isSelected($parent.$index, $index),
-            'today': isToday($parent.$index, $index)
+            'today': isToday($parent.$index, $index),
+            'disabled': isDisabled($parent.$index, $index)
           }"
           ng-click="highlightDate(dayList[$parent.$index * 7 + $index].date)">
             {{ dayList[$parent.$index * 7 + $index].day }}

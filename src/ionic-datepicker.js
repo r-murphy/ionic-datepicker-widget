@@ -10,7 +10,9 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
       replace: true,
       scope: {
         value: '=',
-        weekBeginsOnMonday: '@'
+        weekBeginsOnMonday: '=',
+        min: '=',
+        max: '='
       },
       link: function (scope, element, attrs) {
         var currentDate = angular.copy(scope.value) || new Date(); // Date for the UI calendar display
@@ -49,6 +51,10 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
 
         // Go to previous month
         scope.prevMonth = function () {
+          var previousLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+          if (undefined !== scope.min && previousLastDay < scope.min) {
+            return;
+          }
           currentDate.setMonth(currentDate.getMonth() - 1);
           scope.currentMonth = currentDate.getMonth();
           scope.currentYear = currentDate.getFullYear();
@@ -57,6 +63,10 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
 
         // Go to next month
         scope.nextMonth = function () {
+          var nextFirstDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+          if (undefined !== scope.max && nextFirstDay > scope.max) {
+            return;
+          }
           currentDate.setMonth(currentDate.getMonth() + 1);
           scope.currentMonth = currentDate.getMonth();
           scope.currentYear = currentDate.getFullYear();
@@ -65,6 +75,14 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
 
         scope.highlightDate = function (date) {
           if (typeof date !== 'undefined') {
+            // Minimum date
+            if (undefined !== scope.min && date < scope.min) {
+              return;
+            }
+            // Maximum date
+            if (undefined !== scope.max && date > scope.max) {
+              return;
+            }
             scope.highlightedDate = angular.copy(date);
             currentDate = date;
             refreshCalendar(currentDate);
@@ -94,6 +112,21 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
           return false;
         }
 
+        // Check if the day should be disabled (for CSS class)
+        scope.isDisabled = function (rowIndex, colIndex) {
+          if (scope.isValidDay(rowIndex, colIndex)) {
+            // Minimum date
+            if (scope.dayList[rowIndex * 7 + colIndex].date < scope.min) {
+              return true;
+            }
+            // Maximum date
+            if (scope.dayList[rowIndex * 7 + colIndex].date > scope.max) {
+              return true;
+            }
+          }
+          return false;
+        }
+
         element.on('click', function () {
           refreshCalendar(currentDate);
           $ionicPopup.show({
@@ -105,8 +138,18 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
               { text: 'Close' },
               {
                 text: 'Today',
-                onTap: function () {
+                onTap: function (e) {
                   var now = new Date();
+                  // Minimum date
+                  if (undefined !== scope.min && now < scope.min) {
+                    e.preventDefault();
+                    return;
+                  }
+                  // Maxumum date
+                  if (undefined !== scope.max && now > scope.max) {
+                    e.preventDefault();
+                    return;
+                  }
                   scope.highlightDate(now);
                   scope.value = now;
                 }
