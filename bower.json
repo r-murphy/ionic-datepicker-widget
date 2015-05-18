@@ -10,7 +10,7 @@
   "homepage": "https://github.com/markomarkovic/ionic-datepicker-widget",
   "repository": {
     "type": "git",
-    "url": "git://github.com/markomarkovic/ionic-datepicker-widget.git"
+    "url": "https://github.com/markomarkovic/ionic-datepicker-widget.git"
   },
   "keywords": [
     "ionic-datepicker",
