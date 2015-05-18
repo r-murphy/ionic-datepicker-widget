@@ -2,7 +2,7 @@
  * Created by Rajeshwar Patlolla https://github.com/rajeshwarpatlolla
  * Modified by Marko Marković <okram@civokram.com>
  *
- * @version 1.0.0
+ * @version 1.1.0
  */
 'use strict';
 angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
@@ -12,43 +12,26 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
 		replace: true,
 		scope: {
 			value: '=',
-			weekBeginsOnMonday: '=',
-			min: '=',
-			max: '='
+			weekBeginsOnMonday: '=?',
+			min: '=?',
+			max: '=?',
+			weekDayNames: '=?',
+			monthNames: '=?',
+			todayText: '=?',
+			title: '=?'
 		},
 		link: function (scope, element) {
 			var currentDate = angular.copy(scope.value) || new Date(); // Date for the UI calendar display
 			scope.highlightedDate = angular.copy(currentDate); // Temporary selected date before the 'Set' or 'Today' is pressed
 
 			// Days of the week to be used in calendar heading
-			scope.weekDays = [
-				'Sunday',
-				'Monday',
-				'Tuesday',
-				'Wednesday',
-				'Thursday',
-				'Friday',
-				'Saturday'
-			];
+			scope.weekDays = scope.weekDayNames || ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 			if (scope.weekBeginsOnMonday || false) {
 				scope.weekDays.push(scope.weekDays.shift());
 			}
 
 			// Month names
-			var monthNames = [
-				'January',
-				'February',
-				'March',
-				'April',
-				'May',
-				'June',
-				'July',
-				'August',
-				'September',
-				'October',
-				'November',
-				'December'
-			];
+			var monthNames = scope.monthNames || ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 			scope.calendarRows = new Array(6);
 			scope.calendarCols = new Array(7);
@@ -154,7 +137,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
 				refreshCalendar(currentDate);
 				$ionicPopup.show({
 					templateUrl: 'ionic-datepicker.template.html',
-					title: '<strong>Select a date</strong>',
+					title: scope.title || '<strong>Select a date</strong>',
 					subTitle: '',
 					scope: scope,
 					buttons: [
@@ -163,7 +146,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
 							type: 'button-clear'
 						},
 						{
-							text: 'Today',
+							text: scope.todayText || 'Today',
 							onTap: function (e) {
 								var now = new Date();
 								// Minimum date
