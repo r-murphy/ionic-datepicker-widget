@@ -3,29 +3,26 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var ngHtml2Js = require('gulp-ng-html2js');
 var minifyHtml = require('gulp-minify-html');
-var minifycss = require('gulp-minify-css');
+var merge = require('merge-stream');
 
 gulp.task('default', ['build']);
 
-gulp.task('html2js', function () {
-    gulp.src(['./src/*.html'])
+gulp.task('copy-css', function () {
+    return gulp.src('./src/*.css')
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('build', ['copy-css'], function () {
+    var script = gulp.src('./src/ionic-datepicker.js');
+
+    var template = gulp.src('./src/*.html')
         .pipe(minifyHtml())
         .pipe(ngHtml2Js({
             moduleName: 'ionic-datepicker.template'
-        }))
-        .pipe(concat('ionic-datepicker.template.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('./dist'));
-});
+        }));
 
-gulp.task('build', ['html2js', 'cssminify'], function () {
-    gulp.src(['./src/ionic-datepicker.js'])
+    return merge(script, template)
+        .pipe(concat('ionic-datepicker.min.js'))
         .pipe(uglify({ preserveComments: 'some' }))
-        .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('cssminify', function () {
-    return gulp.src('./src/*.css')
-        .pipe(minifycss())
         .pipe(gulp.dest('./dist'));
 });

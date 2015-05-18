@@ -1,5 +1,7 @@
-/* Default, customize to your liking. */
-
+/**
+ * Optional, but makes everything look better.
+ * Customize to your liking.
+ */
 .datepicker .day {
     padding: 5px;
     white-space: nowrap;
