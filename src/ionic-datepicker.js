@@ -2,7 +2,7 @@
 //https://github.com/rajeshwarpatlolla
 
 'use strict';
-angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templates'])
+angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
 
   .directive('ionicDatepicker', ['$ionicPopup', function ($ionicPopup) {
     return {
