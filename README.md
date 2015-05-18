@@ -3,7 +3,7 @@ _A nice datepicker widget to be used with Ionic framework._
 
 ## Requirements
 
-* ionic framework
+* Ionic framework
 
 ## Usage
 
