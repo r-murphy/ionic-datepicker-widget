@@ -66,8 +66,6 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
             return;
           }
           currentDate.setMonth(currentDate.getMonth() - 1);
-          scope.currentMonth = currentDate.getMonth();
-          scope.currentYear = currentDate.getFullYear();
           refreshCalendar(currentDate)
         };
 
@@ -78,8 +76,6 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
             return;
           }
           currentDate.setMonth(currentDate.getMonth() + 1);
-          scope.currentMonth = currentDate.getMonth();
-          scope.currentYear = currentDate.getFullYear();
           refreshCalendar(currentDate)
         };
 
