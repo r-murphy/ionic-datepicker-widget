@@ -3,7 +3,7 @@ _A nice datepicker widget to be used with Ionic framework._
 
 ## Requirements
 
-* Ionic framework
+ * Ionic framework
 
 ## Usage
 
@@ -43,9 +43,12 @@ $scope.item = {
     </button>
 </ionic-datepicker>
 ```
+  _See `demo/index.html` for additional options and localization examples._
 
 ## Changelog
 
+ 1. v1.1.0
+   * Add localization support
  1. v1.0.0
    * Refactored most of the code
    * Added week-begins-on-monday option
