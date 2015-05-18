@@ -4,6 +4,8 @@ var uglify = require('gulp-uglify');
 var ngHtml2Js = require('gulp-ng-html2js');
 var minifyHtml = require('gulp-minify-html');
 var merge = require('merge-stream');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 
 gulp.task('default', ['build']);
 
@@ -25,4 +27,26 @@ gulp.task('build', ['copy-css'], function () {
         .pipe(concat('ionic-datepicker.min.js'))
         .pipe(uglify({ preserveComments: 'some' }))
         .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('lint', function() {
+    return gulp.src('./src/*.js')
+        .pipe(jshint({
+            'lookup': false,
+            'curly': true,
+            'devel': true,
+            'eqeqeq': true,
+            'globals':{
+                'angular': true
+            },
+            'indent': 2,
+            'quotmark': 'single',
+            'strict': true,
+            'globalstrict': true,
+            'trailing': true,
+            'undef': true,
+            'unused': true
+        }))
+        .pipe(jshint.reporter(stylish))
+        .pipe(jshint.reporter('fail'));
 });
