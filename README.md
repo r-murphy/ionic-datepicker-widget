@@ -52,7 +52,7 @@ $scope.item = {
    * Added optional min and max dates
    * Released as `ionic-datepicker-widget`
  1. v0.1.3
-   * Forked from upstream.
+   * Forked from [upstream](https://github.com/rajeshwarpatlolla/ionic-datepicker).
 
 ## License
 
