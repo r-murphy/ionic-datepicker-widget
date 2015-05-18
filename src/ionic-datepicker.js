@@ -19,9 +19,18 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
         var currentDate = angular.copy(scope.value) || new Date(); // Date for the UI calendar display
         scope.highlightedDate = angular.copy(currentDate); // Temporary selected date before the 'Set' or 'Today' is pressed
 
-        scope.dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        // Days of the week to be used in calendar heading
+        scope.weekDays = [
+          'Sunday',
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday'
+        ];
         if (scope.weekBeginsOnMonday || false) {
-          scope.dayInitials.push(scope.dayInitials.shift());
+          scope.weekDays.push(scope.weekDays.shift());
         }
 
         scope.calendarRows = new Array(6);
