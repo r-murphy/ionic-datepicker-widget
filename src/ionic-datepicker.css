@@ -16,7 +16,7 @@
     background-color: rgba(56, 126, 245, 1) !important; /* Opaque $positive bg */
 }
 .datepicker .today {
-    background-color: rgba(248, 248, 248, 1); /* Opaque $stable bg */
+    background-color: rgba(178, 178, 178, 1); /* Opaque $stable bg */
 }
 .datepicker .disabled {
     background-color: rgba(248, 248, 248, .5) !important; /* Half-transparent $stable bg */
