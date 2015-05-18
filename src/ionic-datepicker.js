@@ -1,6 +1,8 @@
 /*!
  * Created by Rajeshwar Patlolla https://github.com/rajeshwarpatlolla
  * Modified by Marko Marković <okram@civokram.com>
+ *
+ * @version 1.0.0
  */
 'use strict';
 angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
