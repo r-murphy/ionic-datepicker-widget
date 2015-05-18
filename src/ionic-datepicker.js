@@ -12,9 +12,9 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
 		replace: true,
 		scope: {
 			value: '=',
-			weekBeginsOnMonday: '=',
-			min: '=',
-			max: '='
+			weekBeginsOnMonday: '=?',
+			min: '=?',
+			max: '=?'
 		},
 		link: function (scope, element) {
 			var currentDate = angular.copy(scope.value) || new Date(); // Date for the UI calendar display
