@@ -9,7 +9,7 @@
 	<div class="calendar">
 		<div class="row text-center weekDays">
 			<div class="col" ng-repeat="weekDay in weekDays track by $index">
-				{{ weekDay | limitTo:1 }}
+				<abbr title="{{ weekDay }}">{{ weekDay | limitTo:1 }}</abbr>
 			</div>
 		</div>
 		<div class="row text-center" ng-repeat="row in calendarRows track by $index">
