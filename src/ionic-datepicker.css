@@ -2,6 +2,12 @@
  * Optional, but makes everything look better.
  * Customize to your liking.
  */
+.datepicker .calendar {
+	height: 210px;
+}
+.datepicker .weekDays {
+	font-weight: bold;
+}
 .datepicker .day {
     padding: 5px;
     white-space: nowrap;
