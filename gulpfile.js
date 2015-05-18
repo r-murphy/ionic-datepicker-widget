@@ -14,7 +14,7 @@ gulp.task('copy-css', function () {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', ['copy-css'], function () {
+gulp.task('build', ['lint', 'copy-css'], function () {
     var script = gulp.src('./src/ionic-datepicker.js');
 
     var template = gulp.src('./src/*.html')
