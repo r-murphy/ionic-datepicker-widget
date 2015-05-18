@@ -32,6 +32,11 @@ angular.module('starter', ['ionic', 'ionic-datepicker'])
 		min: oneMonthAgo,
 		max: inOneWeek
 	};
+	// Third picker
+	$scope.item3 = {
+		weekDayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+		monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+	};
 }]);
 	</script>
 </head>
@@ -58,6 +63,21 @@ angular.module('starter', ['ionic', 'ionic-datepicker'])
 				<div class="item">
 					<ionic-datepicker value="item2.date" week-begins-on-monday="true" min="item2.min" max="item2.max">
 						<button class="button button-block button-positive icon-left ion-calendar">{{ item2.date | date:'yyyy-MM-dd' }}</button>
+					</ionic-datepicker>
+				</div>
+			</div>
+			<div class="list card">
+				<div class="item item-divider">
+					Localized to german.
+				</div>
+				<div class="item">
+					<ionic-datepicker
+						value="item3.date"
+						week-day-names="item3.weekDayNames"
+						month-names="item3.monthNames"
+						today-text="'Heute'"
+						title="'Wählen Sie einen Datum aus'">
+							<button class="button button-block button-positive icon-left ion-calendar">{{ item3.date | date:'dd.MM.yyyy' }}</button>
 					</ionic-datepicker>
 				</div>
 			</div>
