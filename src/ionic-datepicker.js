@@ -15,7 +15,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
         min: '=',
         max: '='
       },
-      link: function (scope, element, attrs) {
+      link: function (scope, element) {
         var currentDate = angular.copy(scope.value) || new Date(); // Date for the UI calendar display
         scope.highlightedDate = angular.copy(currentDate); // Temporary selected date before the 'Set' or 'Today' is pressed
 
@@ -82,7 +82,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
             return;
           }
           currentDate.setMonth(currentDate.getMonth() - 1);
-          refreshCalendar(currentDate)
+          refreshCalendar(currentDate);
         };
 
         // Go to next month
@@ -92,7 +92,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
             return;
           }
           currentDate.setMonth(currentDate.getMonth() + 1);
-          refreshCalendar(currentDate)
+          refreshCalendar(currentDate);
         };
 
         scope.highlightDate = function (date) {
@@ -132,7 +132,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
             return (scope.dayList[rowIndex * 7 + colIndex].date.toDateString() === new Date().toDateString());
           }
           return false;
-        }
+        };
 
         // Check if the day should be disabled (for CSS class)
         scope.isDisabled = function (rowIndex, colIndex) {
@@ -147,7 +147,7 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
             }
           }
           return false;
-        }
+        };
 
         element.on('click', function () {
           refreshCalendar(currentDate);
@@ -188,8 +188,8 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
                 }
               }
             ]
-          })
-        })
+          });
+        });
       }
-    }
+    };
   }]);
