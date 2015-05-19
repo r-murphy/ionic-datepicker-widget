@@ -149,13 +149,17 @@ angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.template'])
 							text: scope.todayText || 'Today',
 							onTap: function (e) {
 								var now = new Date();
+								var todayMin = new Date(now);
+								var todayMax = new Date(now);
+								todayMin.setHours(0, 0, 0, 0);
+								todayMax.setHours(24, 0, 0, -1);
 								// Minimum date
-								if (undefined !== scope.min && now < scope.min) {
+								if (undefined !== scope.min && todayMax < scope.min) {
 									e.preventDefault();
 									return;
 								}
 								// Maxumum date
-								if (undefined !== scope.max && now > scope.max) {
+								if (undefined !== scope.max && todayMin > scope.max) {
 									e.preventDefault();
 									return;
 								}
