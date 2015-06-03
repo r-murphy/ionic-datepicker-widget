@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/markomarkovic/ionic-datepicker-widget.git"
+    "url": "https://github.com/homburgs/ionic-datepicker-widget.git"
   },
   "devDependencies": {
     "gulp": "~3.8.11",
