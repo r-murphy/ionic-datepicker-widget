@@ -12,7 +12,7 @@ _A nice datepicker widget to be used with Ionic framework._
  * Install the required files using bower:
 
 ```sh
-bower install ionic-datepicker-widget --save
+bower install https://github.com/homburgs/ionic-datepicker-widget.git --save
 ```
 
  * Include the files from the `lib/ionic-datepicker-widget/dist` in your `index.html` file:
@@ -49,17 +49,11 @@ $scope.item = {
 
 ## Changelog
 
+ 1. v1.2.0
+   * add new parameter _leaveCancelButton_ (dont show the X-button)
+   * add new parameter _leaveOkButton_ (dont show the ok-button) so you choose the date by tap on the day and the popup closed automaticly 
  1. v1.1.1
-   * Fix today button behavior when min or max is today
- 1. v1.1.0
-   * Add localization support
- 1. v1.0.0
-   * Refactored most of the code
-   * Added week-begins-on-monday option
-   * Added optional min and max dates
-   * Released as `ionic-datepicker-widget`
- 1. v0.1.3
-   * Forked from [upstream](https://github.com/rajeshwarpatlolla/ionic-datepicker).
+   * Forked from [upstream](https://github.com/markomarkovic/ionic-datepicker-widget.git).
 
 ## License
 
