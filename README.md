@@ -1,7 +1,7 @@
 # Ionic Datepicker Widget
 _A nice datepicker widget to be used with Ionic framework._
 
-## [Demo](http://cdn.rawgit.com/homburgs/ionic-datepicker-widget/1.1.1/demo/index.html)
+## [Demo](http://cdn.rawgit.com/homburgs/ionic-datepicker-widget/1.2.0/demo/index.html)
 
 ## Requirements
 
