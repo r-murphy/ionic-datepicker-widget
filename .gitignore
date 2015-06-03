@@ -1,4 +1,6 @@
 ### Things to ignore
+/.idea
+/*.iml
 /bower_components
 /node_modules
 /npm-debug.log
