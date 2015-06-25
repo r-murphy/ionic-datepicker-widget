@@ -13,14 +13,13 @@
     "url": "https://github.com/homburgs/ionic-datepicker-widget.git"
   },
   "devDependencies": {
-    "gulp": "~3.8.11",
-    "gulp-clean": "^0.3.1",
-    "gulp-concat": "~2.5.2",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
     "gulp-jshint": "^1.10.0",
     "gulp-minify-html": "~1.0.2",
     "gulp-ng-html2js": "~0.2.0",
     "gulp-uglify": "~1.2.0",
-    "jshint-stylish": "^1.0.2",
+    "jshint-stylish": "^2.0.1",
     "merge-stream": "^0.1.7"
   }
 }
