@@ -22,7 +22,8 @@ angular.module( 'ionic-datepicker', [ 'ionic', 'ionic-datepicker.template' ] )
 					leaveCancelButton:  '=?',
 					leaveOkButton:      '=?',
 					stayOpenOnToday:    '=?',
-					title:              '=?'
+					title:              '=?',
+					onClose:            '=?'
 				},
 				link:     function ( scope, element ) {
 					var currentDate = angular.copy( scope.value ) || new Date(); // Date for the UI calendar display
@@ -162,8 +163,10 @@ angular.module( 'ionic-datepicker', [ 'ionic', 'ionic-datepicker.template' ] )
 						popupButtons.push(
 								{
 									text: '<i class="icon ion-close"></i>',
-									type: 'button-clear'
-
+									type: 'button-clear',
+									onTap: function ( ) {
+										scope.cancelled = true;
+									}
 								} );
 					}
 
@@ -221,6 +224,11 @@ angular.module( 'ionic-datepicker', [ 'ionic', 'ionic-datepicker.template' ] )
 							scope:       scope,
 							buttons:     popupButtons
 						} );
+						if (angular.isFunction(scope.onClose)) {
+							scope.datePickerPopup.then(function() {
+								scope.onClose(scope.cancelled ? null : scope.value);
+							});
+						}
 					} );
 				}
 			};
