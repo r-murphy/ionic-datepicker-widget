@@ -21,6 +21,7 @@ angular.module( 'ionic-datepicker', [ 'ionic', 'ionic-datepicker.template' ] )
 					todayText:          '=?',
 					leaveCancelButton:  '=?',
 					leaveOkButton:      '=?',
+					stayOpenOnToday:    '=?',
 					title:              '=?'
 				},
 				link:     function ( scope, element ) {
@@ -186,6 +187,9 @@ angular.module( 'ionic-datepicker', [ 'ionic', 'ionic-datepicker.template' ] )
 									{
 										e.preventDefault();
 										return;
+									}
+									if (scope.stayOpenOnToday) {
+										e.preventDefault();
 									}
 									scope.highlightDate( now );
 									scope.value  = now;
