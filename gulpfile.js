@@ -22,7 +22,8 @@ gulp.task('build', ['lint', 'copy-css'], function () {
 		.pipe(minifyHtml())
 		.pipe(ngHtml2Js({
 			moduleName: 'ionic-datepicker.template'
-		}));
+		}))
+		.pipe(gulp.dest('./dbg/ionic-datepicker.template.js'));
 
 	return merge(script, template)
 		.pipe(concat('ionic-datepicker.min.js'))
