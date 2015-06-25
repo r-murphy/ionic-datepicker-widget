@@ -23,9 +23,11 @@ gulp.task('build', ['lint', 'copy-css'], function () {
 		.pipe(ngHtml2Js({
 			moduleName: 'ionic-datepicker.template'
 		}))
-		.pipe(gulp.dest('./dbg/ionic-datepicker.template.js'));
+		.pipe(gulp.dest('./dbg'));
 
 	return merge(script, template)
+		.pipe(concat('ionic-datepicker.js'))
+		.pipe(gulp.dest('./dbg'))
 		.pipe(concat('ionic-datepicker.min.js'))
 		.pipe(uglify({ preserveComments: 'some' }))
 		.pipe(gulp.dest('./dist'));
